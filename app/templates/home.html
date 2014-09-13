@@ -1,1 +1,22 @@
-{{ welcome_message }}
+
+<table id="plateau" class="table-bordered table-condensed">
+    <tr ng-repeat="y in [5, 4, 3, 2, 1, 0]">
+        <td ng-repeat="x in [0, 1, 2, 3, 4, 5]" class="text-center">
+          <div ng-show="activeCell(x,y)" class="glyphicon {{current.direction.arrow}}">
+          </div>
+        </td>
+    </tr>
+</table>
+
+<hr />
+
+<table id="control" class="">
+  <tr>
+    <td><button class="btn btn-default" ng-click="control('L')"><i class="glyphicon glyphicon-arrow-left"></i></button></td>
+    <td><button class="btn btn-default" ng-click="control('M')"><i class="glyphicon {{current.direction.arrow}}"></i></button></td>
+    <td><button class="btn btn-default" ng-click="control('R')"><i class="glyphicon glyphicon-arrow-right"></i></button></td>
+  </tr>
+</table>
+
+
+

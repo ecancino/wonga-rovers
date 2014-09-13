@@ -11,6 +11,8 @@ describe('Home Pages', function() {
 
   it('should properly provide a welcome message', inject(function(welcomeMessage) {
     expect(welcomeMessage()).toMatch(/welcome/i);
+    expect(welcomeMessage()).toBe('Welcome Home...');
+
   }));
 
 });

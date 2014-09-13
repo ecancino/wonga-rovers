@@ -82,6 +82,7 @@ module.exports = function(grunt) {
         dest: './app/assets/app.css',
         src: [
           'app/styles/app.css',
+          'bower_components/bootstrap/dist/css/bootstrap.css'
           //place your Stylesheet files here
         ]
       },
@@ -91,14 +92,15 @@ module.exports = function(grunt) {
         },
         dest: './app/assets/app.js',
         src: [
+          'bower_components/jquery/jquery.js',
           'bower_components/angular/angular.js',
           'bower_components/angular-route/angular-route.js',
           'bower_components/angular-animate/angular-animate.js',
           'app/scripts/homePages.js',
-          'app/scripts/app.js',
+          'app/scripts/app.js'
           //place your JavaScript files here
         ]
-      },
+      }
     },
 
     watch: {
@@ -147,7 +149,7 @@ module.exports = function(grunt) {
           type : 'html',
           dir : 'coverage/'
         }
-      },
+      }
     }
   });
 

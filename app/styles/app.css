@@ -1,0 +1,16 @@
+#plateau, #control {
+  margin: 0 auto;
+}
+
+#plateau td {
+  width: 90px !important;
+  height: 90px;
+}
+
+#control {
+  width: 60px;
+}
+#control td {
+  width: 20px !important;
+  height: 20px  !important;
+}
