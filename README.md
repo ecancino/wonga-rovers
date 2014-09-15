@@ -1,6 +1,4 @@
-# Yearofmoo AngularJS Seed Repo
-
-A starter AngularJS repository for getting started with AngularJS. Includes helpful unit testing tools, Protractor integration and coverage testing.
+# Wonga Rovers
 
 ## Installation
 
