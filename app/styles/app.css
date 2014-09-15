@@ -7,10 +7,10 @@
   height: 90px;
 }
 
-#control {
-  width: 60px;
+.control {
+  margin: 0 auto;
 }
-#control td {
-  width: 20px !important;
-  height: 20px  !important;
+.control td {
+  width: 45px !important;
+  height: 40px  !important;
 }

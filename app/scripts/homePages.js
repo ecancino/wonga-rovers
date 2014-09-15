@@ -2,10 +2,6 @@ angular.module('app.homePages', [])
 
   .controller('HomeCtrl', ['$scope', function($scope) {
 
-    $scope.activeCell = function(x, y) {
-      return x == $scope.current.x && y == $scope.current.y;
-    };
-
     $scope.east = {
       name: 'east',
       arrow: 'glyphicon-chevron-right',
@@ -55,19 +51,65 @@ angular.module('app.homePages', [])
     $scope.east.next = $scope.north;
     $scope.east.prev = $scope.south;
 
-    $scope.current = {
-      x: 0,
-      y: 0,
-      direction: $scope.north
+
+    $scope.rovers = [
+      {
+        name: 'Sojourner',
+        x: 1,
+        y: 2,
+        direction: $scope.north,
+        mission: {
+          start: {
+            x: 1,
+            y: 2,
+            direction: $scope.north
+          },
+          steps: [
+            'L', 'M', 'L', 'M', 'L', 'M', 'L', 'M', 'M'
+          ]
+        },
+        deployed: false
+      },
+      {
+        name: 'Curiosity',
+        x: 3,
+        y: 3,
+        direction: $scope.east,
+        mission: {
+          start: {
+            x: 3,
+            y: 3,
+            direction: $scope.east
+          },
+          steps: [
+            'M', 'M', 'R', 'M', 'M', 'R', 'M', 'R', 'R', 'M'
+          ]
+        },
+        deployed: false
+      }
+    ];
+
+    $scope.activeCell = function(rover, x, y) {
+      return x === rover.x && y === rover.y;
     };
 
-    $scope.control = function(command) {
-      if(command == 'L') {
-        $scope.current.direction = $scope.current.direction.next;
-      } else if(command == 'R') {
-        $scope.current.direction = $scope.current.direction.prev;
-      } else if(command == 'M') {
-        $scope.current.direction.update($scope.current);
+    $scope.deploy = function(rover) {
+      if (!rover.mission.deployed) {
+        angular.forEach(rover.mission.steps, function(step) {
+          $scope.control(rover, step);
+        });
+        rover.mission.deployed = true;
       }
-    }
-  }])
+    };
+
+    $scope.control = function(rover, command) {
+      if(command === 'L') {
+        rover.direction = rover.direction.next;
+      } else if(command === 'R') {
+        rover.direction = rover.direction.prev;
+      } else if(command === 'M') {
+        rover.direction.update(rover);
+      }
+    };
+
+  }]);
