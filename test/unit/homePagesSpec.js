@@ -30,28 +30,16 @@ describe('Home Pages', function() {
 
   it('should deploy to 1, 3, N', inject(function($controller, $rootScope) {
     rover1 = scope.rovers[0];
-
-    expect(rover1.x).toBe(1);
-    expect(rover1.y).toBe(2);
-    expect(rover1.direction.name).toBe('north');
-
     scope.deploy(rover1);
-
     expect(rover1.x).toBe(1);
     expect(rover1.y).toBe(3);
     expect(rover1.direction.name).toBe('north');
 
   }));
 
-  it('should deploy to 1, 3, N', inject(function($controller, $rootScope) {
+  it('should deploy to 5, 1, E', inject(function($controller, $rootScope) {
     rover2 = scope.rovers[1];
-
-    expect(rover2.x).toBe(3);
-    expect(rover2.y).toBe(3);
-    expect(rover2.direction.name).toBe('east');
-
     scope.deploy(rover2);
-
     expect(rover2.x).toBe(5);
     expect(rover2.y).toBe(1);
     expect(rover2.direction.name).toBe('east');
