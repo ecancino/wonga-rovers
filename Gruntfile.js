@@ -77,6 +77,29 @@ module.exports = function(grunt) {
       ]
     },
 
+    copy: {
+      fonts: {
+        files: [
+          {
+            expand: true,
+            cwd: 'app',
+            src: ['bower_components/bootstrap/fonts/*.*'],
+            dest: 'app/assets/fonts'
+          }
+        ]
+      },
+      maps: {
+        files: [
+          {
+            expand: true,
+            cwd: 'app',
+            src: ['bower_components/bootstrap/dist/css/bootstrap.css.map'],
+            dest: 'app/assets'
+          }
+        ]
+      }
+    },
+
     concat: {
       styles: {
         dest: './app/assets/app.css',
@@ -169,7 +192,7 @@ module.exports = function(grunt) {
 
   //installation-related
   grunt.registerTask('install', ['update','shell:protractor_install']);
-  grunt.registerTask('update', ['shell:npm_install', 'concat']);
+  grunt.registerTask('update', ['shell:npm_install', 'copy', 'concat']);
 
   //defaults
   grunt.registerTask('default', ['dev']);
