@@ -78,23 +78,24 @@ module.exports = function(grunt) {
     },
 
     copy: {
-      fonts: {
+      main: {
         files: [
           {
             expand: true,
-            cwd: 'app',
-            src: ['bower_components/bootstrap/fonts/*.*'],
-            dest: 'app/assets/fonts'
-          }
-        ]
-      },
-      maps: {
-        files: [
-          {
-            expand: true,
-            cwd: 'app',
-            src: ['bower_components/bootstrap/dist/css/bootstrap.css.map'],
+            flatten: true,
+            src: 'bower_components/bootstrap/dist/css/bootstrap.css.map',
             dest: 'app/assets'
+          },
+          {
+            expand: true,
+            flatten: true,
+            src: [
+              'bower_components/bootstrap/fonts/glyphicons-halflings-regular.eot',
+              'bower_components/bootstrap/fonts/glyphicons-halflings-regular.svg',
+              'bower_components/bootstrap/fonts/glyphicons-halflings-regular.ttf',
+              'bower_components/bootstrap/fonts/glyphicons-halflings-regular.woff'
+            ],
+            dest: 'app/assets/fonts'
           }
         ]
       }
