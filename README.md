@@ -35,3 +35,9 @@
 ### Coverage Testing
 
 `grunt coverage`
+
+## TODO
+
+* Move navigation (north, east, west, south) to a factory
+* Move grid to a factory that uses a matrix
+* Fix the mission to be called at any time
