@@ -4,7 +4,8 @@ angular.module('myApp', ['ngRoute', 'app.homePages'])
 
   .config(function($routeProvider, TPL_PATH) {
     $routeProvider.when('/',{
+      templateUrl : TPL_PATH + '/home.html',
       controller : 'HomeCtrl',
-      templateUrl : TPL_PATH + '/home.html'
+      controllerAs : 'home'
     });
   });
