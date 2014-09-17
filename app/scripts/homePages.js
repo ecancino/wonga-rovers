@@ -47,9 +47,9 @@ var HomeCtrl = function($scope, Navigation) {
         },
         steps: [
           'L', 'M', 'L', 'M', 'L', 'M', 'L', 'M', 'M'
-        ]
-      },
-      deployed: false
+        ],
+        deployed: false
+      }
     },
     {
       name: 'Curiosity',
@@ -64,9 +64,9 @@ var HomeCtrl = function($scope, Navigation) {
         },
         steps: [
           'M', 'M', 'R', 'M', 'M', 'R', 'M', 'R', 'R', 'M'
-        ]
-      },
-      deployed: false
+        ],
+        deployed: false
+      }
     }
   ];
 
