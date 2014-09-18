@@ -75,12 +75,13 @@ var HomeCtrl = function($scope, Navigation) {
   };
 
   home.deploy = function(rover) {
-    if (!rover.mission.deployed) {
-      angular.forEach(rover.mission.steps, function(step) {
-        home.control(rover, step);
-      });
-      rover.mission.deployed = true;
-    }
+    rover.x = rover.mission.start.x;
+    rover.y = rover.mission.start.y;
+    rover.direction = rover.mission.start.direction;
+    angular.forEach(rover.mission.steps, function(step) {
+      home.control(rover, step);
+    });
+    rover.mission.deployed = true;
   };
 
   home.control = function(rover, command) {

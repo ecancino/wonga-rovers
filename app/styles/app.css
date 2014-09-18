@@ -7,8 +7,15 @@
   height: 90px;
 }
 
+.dashboard {
+  border: 1px solid #eeeeee;
+  padding: 20px;
+  width: 540px !important;
+}
+
 .control {
-  margin: 0 auto;
+  float: left;
+  margin: 0 50px;
 }
 .control td {
   width: 45px !important;

@@ -11,21 +11,23 @@
 
 <hr />
 
-<table class="control inline" ng-repeat="rover in home.rovers">
-  <tr>
-    <td colspan="3">{{rover.name}} {{rover.x}}, {{rover.y}}, {{rover.direction.name}}</td>
-  </tr>
-  <tr>
-    <td><button ng-disabled="!rover.mission.deployed" class="btn btn-default" ng-click="home.control(rover, 'L')"><i class="glyphicon glyphicon-arrow-left"></i></button></td>
-    <td><button ng-disabled="!rover.mission.deployed" class="btn btn-default" ng-click="home.control(rover, 'M')"><i class="glyphicon {{rover.direction.arrow}}"></i></button></td>
-    <td><button ng-disabled="!rover.mission.deployed" class="btn btn-default" ng-click="home.control(rover, 'R')"><i class="glyphicon glyphicon-arrow-right"></i></button></td>
-  </tr>
-  <td colspan="3" class="text-center">Deploy!</td>
-  <tr>
-    <td></td>
-    <td>
-      <button id="{{rover.name}}" ng-disabled="rover.mission.deployed" class="btn btn-default" ng-click="home.deploy(rover)"><i class="glyphicon glyphicon-send"></i></button>
-    </td>
-    <td></td>
-  </tr>
-</table>
+<div class="container dashboard">
+  <table class="control pull-left" ng-repeat="rover in home.rovers">
+    <tr>
+      <td colspan="3">{{rover.name}} {{rover.x}}, {{rover.y}}, {{rover.direction.name}}</td>
+    </tr>
+    <tr>
+      <td><button class="btn btn-default" ng-click="home.control(rover, 'L')"><i class="glyphicon glyphicon-arrow-left"></i></button></td>
+      <td><button class="btn btn-default" ng-click="home.control(rover, 'M')"><i class="glyphicon {{rover.direction.arrow}}"></i></button></td>
+      <td><button class="btn btn-default" ng-click="home.control(rover, 'R')"><i class="glyphicon glyphicon-arrow-right"></i></button></td>
+    </tr>
+    <td colspan="3" class="text-center">Deploy!</td>
+    <tr>
+      <td></td>
+      <td>
+        <button id="{{rover.name}}" class="btn btn-default" ng-click="home.deploy(rover)"><i class="glyphicon glyphicon-send"></i></button>
+      </td>
+      <td></td>
+    </tr>
+  </table>
+</div>
