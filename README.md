@@ -38,6 +38,7 @@
 
 ## TODO
 
+* Move everything to a directive
 * ~~Move navigation (north, east, west, south) to a factory~~
 * Move grid to a factory that uses a matrix
 * ~~Fix the mission to be called at any time~~
