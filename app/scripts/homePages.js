@@ -1,5 +1,4 @@
 var Navigation = function() {
-
   var cardinalPoint = function(name, arrow, update) {
     this.name = name;
     this.arrow = arrow;
@@ -8,10 +7,21 @@ var Navigation = function() {
     this.prev = null;
   };
 
-  this.east = new cardinalPoint('east', 'glyphicon-chevron-right', function(position) { position.x += 1; });
-  this.north = new cardinalPoint('north', 'glyphicon-chevron-up', function(position) { position.y += 1; });
-  this.west = new cardinalPoint('west', 'glyphicon-chevron-left', function(position) { position.x -= 1; });
-  this.south = new cardinalPoint('south', 'glyphicon-chevron-down', function(position) { position.y -= 1; });
+  var movement = function(position, property, operation) {
+    if (operation == '+') position[property] += 1;
+    if (operation == '-') position[property] -= 1;
+    if (position[property] > 5) {
+      position[property] = 0;
+    }
+    if (position[property] < 0) {
+      position[property] = 5;
+    }
+  };
+
+  this.east = new cardinalPoint('east', 'glyphicon-chevron-right',  function(position) { movement(position, 'x', '+'); });
+  this.north = new cardinalPoint('north', 'glyphicon-chevron-up',   function(position) { movement(position, 'y', '+'); });
+  this.west = new cardinalPoint('west', 'glyphicon-chevron-left',   function(position) { movement(position, 'x', '-'); });
+  this.south = new cardinalPoint('south', 'glyphicon-chevron-down', function(position) { movement(position, 'y', '-'); });
 
   this.north.next = this.west;
   this.north.prev = this.east;
@@ -22,13 +32,56 @@ var Navigation = function() {
   this.east.next = this.north;
   this.east.prev = this.south;
 
-  return {
-    east: this.east,
-    north: this.north,
-    west: this.west,
-    south: this.south
+  this.get = function() {
+    return {
+      east: this.east,
+      north: this.north,
+      west: this.west,
+      south: this.south
+    }
   };
 };
+
+var whilePressed = function ($parse, $interval) {
+  return {
+    restrict: 'A',
+    scope: {
+      whilePressed: '&'
+    },
+    link: function (scope, elem, attrs) {
+      var TICK_LENGTH = 150;
+      var action = scope.whilePressed;
+      var intervalPromise = null;
+
+      var bindWhilePressed = function() {
+        elem.on('mousedown', beginAction);
+      };
+      var beginAction = function(e) {
+        e.preventDefault();
+        tickAction();
+        intervalPromise = $interval(tickAction, TICK_LENGTH);
+        bindEndAction();
+      };
+      bindWhilePressed();
+      var bindEndAction = function() {
+        elem.on('mouseup', endAction);
+        elem.on('mouseleave', endAction);
+      };
+      var unbindEndAction = function() {
+        elem.off('mouseup', endAction);
+        elem.off('mouseleave', endAction);
+      };
+      var endAction = function() {
+        $interval.cancel(intervalPromise);
+        unbindEndAction();
+      };
+      var tickAction = function() {
+        action(scope);
+      };
+    }
+  };
+};
+whilePressed.$inject = ['$parse', '$interval'];
 
 var HomeCtrl = function($scope, Navigation) {
   var home = this;
@@ -100,4 +153,5 @@ HomeCtrl.$inject = ['$scope', 'Navigation'];
 
 angular.module('app.homePages', [])
 .service('Navigation', Navigation)
+.directive('whilePressed', whilePressed)
 .controller('HomeCtrl', HomeCtrl);

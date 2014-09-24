@@ -38,8 +38,10 @@
 
 ## TODO
 
-* Move everything to a directive
-* ~~Move navigation (north, east, west, south) to a factory~~
+* Move grid to a directive
 * Move grid to a factory that uses a matrix
+* ~~Add continous move forward~~
+* ~~Add grid boundaries to movement~~
+* ~~Move navigation (north, east, west, south) to a factory~~
 * ~~Fix the mission to be called at any time~~
 * ~~Use Controller As syntax~~
