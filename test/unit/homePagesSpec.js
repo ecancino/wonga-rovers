@@ -13,7 +13,7 @@ describe('Home Pages', function() {
   }));
 
   it('should start at 1, 2, N', inject(function($controller, $rootScope) {
-    rover1 = scope.rovers[0];
+    var rover1 = scope.rovers[0];
 
     expect(rover1.x).toBe(1);
     expect(rover1.y).toBe(2);
@@ -21,7 +21,7 @@ describe('Home Pages', function() {
   }));
 
   it('should start at 3, 3, E', inject(function($controller, $rootScope) {
-    rover2 = scope.rovers[1];
+    var rover2 = scope.rovers[1];
 
     expect(rover2.x).toBe(3);
     expect(rover2.y).toBe(3);
@@ -29,7 +29,7 @@ describe('Home Pages', function() {
   }));
 
   it('should deploy to 1, 3, N', inject(function($controller, $rootScope) {
-    rover1 = scope.rovers[0];
+    var rover1 = scope.rovers[0];
     scope.deploy(rover1);
     expect(rover1.x).toBe(1);
     expect(rover1.y).toBe(3);
@@ -38,7 +38,7 @@ describe('Home Pages', function() {
   }));
 
   it('should deploy to 5, 1, E', inject(function($controller, $rootScope) {
-    rover2 = scope.rovers[1];
+    var rover2 = scope.rovers[1];
     scope.deploy(rover2);
     expect(rover2.x).toBe(5);
     expect(rover2.y).toBe(1);

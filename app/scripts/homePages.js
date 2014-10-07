@@ -1,5 +1,5 @@
 var Navigation = function() {
-  var cardinalPoint = function(name, arrow, update) {
+  var CardinalPoint = function(name, arrow, update) {
     this.name = name;
     this.arrow = arrow;
     this.update = update;
@@ -8,8 +8,8 @@ var Navigation = function() {
   };
 
   var movement = function(position, property, operation) {
-    if (operation == '+') position[property] += 1;
-    if (operation == '-') position[property] -= 1;
+    if (operation === '+') { position[property] += 1; }
+    if (operation === '-') { position[property] -= 1; }
     if (position[property] > 5) {
       position[property] = 0;
     }
@@ -18,10 +18,10 @@ var Navigation = function() {
     }
   };
 
-  this.east = new cardinalPoint('east', 'glyphicon-chevron-right',  function(position) { movement(position, 'x', '+'); });
-  this.north = new cardinalPoint('north', 'glyphicon-chevron-up',   function(position) { movement(position, 'y', '+'); });
-  this.west = new cardinalPoint('west', 'glyphicon-chevron-left',   function(position) { movement(position, 'x', '-'); });
-  this.south = new cardinalPoint('south', 'glyphicon-chevron-down', function(position) { movement(position, 'y', '-'); });
+  this.east = new CardinalPoint('east', 'glyphicon-chevron-right',  function(position) { movement(position, 'x', '+'); });
+  this.north = new CardinalPoint('north', 'glyphicon-chevron-up',   function(position) { movement(position, 'y', '+'); });
+  this.west = new CardinalPoint('west', 'glyphicon-chevron-left',   function(position) { movement(position, 'x', '-'); });
+  this.south = new CardinalPoint('south', 'glyphicon-chevron-down', function(position) { movement(position, 'y', '-'); });
 
   this.north.next = this.west;
   this.north.prev = this.east;
@@ -38,7 +38,7 @@ var Navigation = function() {
       north: this.north,
       west: this.west,
       south: this.south
-    }
+    };
   };
 };
 
@@ -48,7 +48,7 @@ var whilePressed = function ($parse, $interval) {
     scope: {
       whilePressed: '&'
     },
-    link: function (scope, elem, attrs) {
+    link: function (scope, elem) {
       var TICK_LENGTH = 150;
       var action = scope.whilePressed;
       var intervalPromise = null;
